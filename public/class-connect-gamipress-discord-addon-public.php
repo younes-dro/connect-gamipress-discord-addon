@@ -314,7 +314,7 @@ class Connect_Gamipress_Discord_Addon_Public {
 		if ( ! is_user_logged_in() ) {
 
 			wp_send_json_error( 'Unauthorized user', 401 );
-			exit();
+			return;
 
 		}
 		$user_ranks = sanitize_text_field( ets_gamipress_discord_get_user_ranks_ids( $user_id ) );
@@ -384,7 +384,7 @@ class Connect_Gamipress_Discord_Addon_Public {
 	public function get_discord_current_user( $access_token ) {
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( 'Unauthorized user', 401 );
-			exit();
+			return;
 		}
 		$user_id = get_current_user_id();
 
@@ -416,7 +416,7 @@ class Connect_Gamipress_Discord_Addon_Public {
 	public function add_discord_member_in_guild( $_ets_gamipress_discord_user_id, $user_id, $access_token ) {
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( 'Unauthorized user', 401 );
-			exit();
+			return;
 		}
 		$user_ranks = map_deep( ets_gamipress_discord_get_user_ranks_ids( $user_id ), 'sanitize_text_field' );
 		if ( $user_ranks !== null ) {
@@ -734,7 +734,7 @@ class Connect_Gamipress_Discord_Addon_Public {
 
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( 'Unauthorized user', 401 );
-			exit();
+			return;
 		}
 
 		// Check for nonce security
@@ -833,7 +833,7 @@ class Connect_Gamipress_Discord_Addon_Public {
 
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( 'Unauthorized user', 401 );
-			exit();
+			return;
 		}
 		$access_token                       = sanitize_text_field( trim( get_user_meta( $user_id, '_ets_gamipress_discord_access_token', true ) ) );
 		$ets_gamipress_discord_role_mapping = json_decode( get_option( 'ets_gamipress_discord_role_mapping' ), true );
@@ -871,7 +871,7 @@ class Connect_Gamipress_Discord_Addon_Public {
 
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( 'Unauthorized user', 401 );
-			exit();
+			return;
 		}
 		$ets_gamipress_discord_send_award_user_points_dm = sanitize_text_field( trim( get_option( 'ets_gamipress_discord_send_award_user_points_dm' ) ) );
 		if ( isset( $user_id ) && isset( $args['achievement_id'] ) && $ets_gamipress_discord_send_award_user_points_dm == true ) {
@@ -892,7 +892,7 @@ class Connect_Gamipress_Discord_Addon_Public {
 
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( 'Unauthorized user', 401 );
-			exit();
+			return;
 		}
 
 		if ( is_array( $data ) && count( $data ) > 0 ) {

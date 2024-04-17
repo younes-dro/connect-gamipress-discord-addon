@@ -724,7 +724,7 @@ class Connect_Gamipress_Discord_Addon_Admin {
 
 		if ( ! is_user_logged_in() ) {
 			wp_send_json_error( 'Unauthorized user', 401 );
-			exit();
+			return;
 		}
 
 		// Check for nonce security
